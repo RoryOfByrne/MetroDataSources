@@ -83,7 +83,9 @@ const config = {
 };
 
 
-function initDataSource(mc) {
+var mc;
+function initDataSource(metroClient) {
+  mc = metroClient;
   console.log("At least here...");
   observer.observe(document.body, config);
   registerTweetActions(document.body);
