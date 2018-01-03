@@ -83,7 +83,7 @@ const config = {
 };
 
 
-const initDataSource = function(mc) {
+function initDataSource(mc) {
   console.log("At least here...");
   observer.observe(document.body, config);
   registerTweetActions(document.body);
