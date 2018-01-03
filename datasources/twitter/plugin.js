@@ -1,4 +1,7 @@
 const sendDatapoint = function(datapoint) {
+  console.log("Got data to send:");
+  console.log(datapoint);
+
   var xhr = new XMLHttpRequest();
   var url = "https://fcq9bypaa2.execute-api.us-east-1.amazonaws.com/prod/data-dump-lambda-function";
 
