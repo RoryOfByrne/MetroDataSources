@@ -1,3 +1,7 @@
+const publishDatapoint = function(datapoint) {
+  super.sendDatapoint(datapoint);
+}
+
 const registerTweetActions = function (node) {
   var tweets = node.getElementsByClassName("tweet");
 
@@ -30,7 +34,7 @@ const registerTweetActions = function (node) {
         item['event'] = "TwitterReply-"+Date.now();
         storageItem["TwitterReply-"+Date.now()] = JSON.stringify(item);
         chrome.storage.sync.set(storageItem);
-        this.sendDatapoint(item);
+        publishDatapoint(item);
       });
 
       // Add retweet button click listener.
@@ -41,7 +45,7 @@ const registerTweetActions = function (node) {
         item['event'] = "TwitterRetweet-"+Date.now();
         storageItem["TwitterRetweet-"+Date.now()] = JSON.stringify(item);
         chrome.storage.sync.set(storageItem);
-        this.sendDatapoint(item);
+        publishDatapoint(item);
       });
 
       // Add favorite button click listener.
@@ -53,7 +57,7 @@ const registerTweetActions = function (node) {
         storageItem["TwitterFavorite-"+Date.now()] = JSON.stringify(item);
         chrome.storage.sync.set(storageItem);
         console.log(storageItem);
-        this.sendDatapoint(item);
+        publishDatapoint(item);
       });
     } catch(err) {
       console.log("fasdufji");
