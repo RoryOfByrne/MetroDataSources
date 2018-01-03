@@ -1,32 +1,3 @@
-const sendDatapoint = function(datapoint) {
-  console.log("Got data to send:");
-  console.log(datapoint);
-
-  console.log("run");
-  validateDatapoint(datapoint);
-  console.log("tafuck");
-
-  if(!validateDatapoint(datapoint)) {
-    // Datapoint doesn't match schema...
-    console.log("Datapoint does not match schema.");
-
-    return;
-  }
-
-  var xhr = new XMLHttpRequest();
-  var url = "https://fcq9bypaa2.execute-api.us-east-1.amazonaws.com/prod/data-dump-lambda-function";
-
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/json");
-
-  var data = {"datasource": "Twitter-new",
-    "timestamp": Date.now(),
-    "data": JSON.stringify(datapoint),
-    "user": "dummyUsername"};
-  console.log(JSON.stringify(data));
-  xhr.send(JSON.stringify(data));
-}
-
 const registerTweetActions = function (node) {
   var tweets = node.getElementsByClassName("tweet");
 
@@ -59,7 +30,7 @@ const registerTweetActions = function (node) {
         item['event'] = "TwitterReply-"+Date.now();
         storageItem["TwitterReply-"+Date.now()] = JSON.stringify(item);
         chrome.storage.sync.set(storageItem);
-        sendDatapoint(item);
+        this.sendDatapoint(item);
       });
 
       // Add retweet button click listener.
@@ -70,7 +41,7 @@ const registerTweetActions = function (node) {
         item['event'] = "TwitterRetweet-"+Date.now();
         storageItem["TwitterRetweet-"+Date.now()] = JSON.stringify(item);
         chrome.storage.sync.set(storageItem);
-        sendDatapoint(item);
+        this.sendDatapoint(item);
       });
 
       // Add favorite button click listener.
@@ -82,7 +53,7 @@ const registerTweetActions = function (node) {
         storageItem["TwitterFavorite-"+Date.now()] = JSON.stringify(item);
         chrome.storage.sync.set(storageItem);
         console.log(storageItem);
-        sendDatapoint(item);
+        this.sendDatapoint(item);
       });
     } catch(err) {
       console.log("fasdufji");
