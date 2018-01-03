@@ -3,7 +3,6 @@ const registerTweetActions = function (node) {
 
   for(var i=0; i<tweets.length; i++) {
 
-
     try {
       let tweet = tweets[i];
 
@@ -25,42 +24,28 @@ const registerTweetActions = function (node) {
       let tweetActionsNode = tweet.getElementsByClassName("ProfileTweet-actionList")[0];
       let replyButtonNode = tweetActionsNode.getElementsByClassName("js-actionReply")[0];
       replyButtonNode.addEventListener('click', function() {
-        // TODO: Don't just store string.
-        let storageItem = {};
-        item['event'] = "TwitterReply-"+Date.now();
-        storageItem["TwitterReply-"+Date.now()] = JSON.stringify(item);
-        chrome.storage.sync.set(storageItem);
+        item['event'] = "TwitterReply";
         mc.sendDatapoint(item);
       });
 
       // Add retweet button click listener.
       let retweetButtonNode = tweetActionsNode.getElementsByClassName("js-actionRetweet")[0];
       retweetButtonNode.addEventListener('click', function() {
-        // TODO: Don't just store string.
-        let storageItem = {};
-        item['event'] = "TwitterRetweet-"+Date.now();
-        storageItem["TwitterRetweet-"+Date.now()] = JSON.stringify(item);
-        chrome.storage.sync.set(storageItem);
+        item['event'] = "TwitterRetweet";
         mc.sendDatapoint(item);
       });
 
       // Add favorite button click listener.
       let favoriteButtonNode = tweetActionsNode.getElementsByClassName("js-actionFavorite")[0];
       favoriteButtonNode.addEventListener('click', function() {
-        // TODO: Don't just store string.
-        let storageItem = {};
-        item['event'] = "TwitterFavorite-"+Date.now();
-        storageItem["TwitterFavorite-"+Date.now()] = JSON.stringify(item);
-        chrome.storage.sync.set(storageItem);
-        console.log(storageItem);
+        item['event'] = "TwitterFavorite";
         mc.sendDatapoint(item);
       });
     } catch(err) {
-      console.log("fasdufji");
+      console.log("Error while setting handlers:");
       console.log(err);
       continue;
     }
-
 
   }
 }
@@ -86,7 +71,7 @@ const config = {
 var mc;
 function initDataSource(metroClient) {
   mc = metroClient;
-  console.log("At least here...");
+  console.log("Beginning Twitter data source.");
   observer.observe(document.body, config);
   registerTweetActions(document.body);
 }
