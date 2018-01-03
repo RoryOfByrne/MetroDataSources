@@ -1,5 +1,5 @@
 const publishDatapoint = function(datapoint) {
-  super.sendDatapoint(datapoint);
+  this.sendDatapoint(datapoint);
 }
 
 const registerTweetActions = function (node) {
