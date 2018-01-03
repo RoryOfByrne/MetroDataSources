@@ -63,6 +63,8 @@ const registerTweetActions = function (node) {
       let storageItem = {};
       storageItem["TwitterFavorite-"+Date.now()] = JSON.stringify(item);
       chrome.storage.sync.set(storageItem);
+      console.log("Heading to the function...");
+      console.log(storageItem);
       sendDatapoint(storageItem);
     });
   }
