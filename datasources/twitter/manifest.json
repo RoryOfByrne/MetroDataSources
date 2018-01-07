@@ -3,5 +3,5 @@
   "author": "adam",
   "description": "This is the general Twitter datasource improved with a schema.",
   "version": "0.4",
-  "sites": [".*twitter\.com.*"]
+  "sites": [".*twitter\\.com.*"]
 }
