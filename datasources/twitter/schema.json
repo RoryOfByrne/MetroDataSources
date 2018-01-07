@@ -1,4 +1,5 @@
 {
-  "Dummy": "JSON",
-  "File": "For testing"
+  "tweetAuthor": "Is what it is",
+  "tweetContent": "Very good schema",
+  "event": "Very good schema"
 }

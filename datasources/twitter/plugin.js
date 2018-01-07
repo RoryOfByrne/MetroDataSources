@@ -1,26 +1,7 @@
-const sendDatapoint = function(datapoint) {
-  console.log("Got data to send:");
-  console.log(datapoint);
-
-  var xhr = new XMLHttpRequest();
-  var url = "https://fcq9bypaa2.execute-api.us-east-1.amazonaws.com/prod/data-dump-lambda-function";
-
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/json");
-
-  var data = {"datasource": "Twitter",
-    "timestamp": Date.now(),
-    "data": JSON.stringify(datapoint),
-    "user": "dummyUsername"};
-  console.log(JSON.stringify(data));
-  xhr.send(JSON.stringify(data));
-}
-
 const registerTweetActions = function (node) {
   var tweets = node.getElementsByClassName("tweet");
 
   for(var i=0; i<tweets.length; i++) {
-
 
     try {
       let tweet = tweets[i];
@@ -43,42 +24,28 @@ const registerTweetActions = function (node) {
       let tweetActionsNode = tweet.getElementsByClassName("ProfileTweet-actionList")[0];
       let replyButtonNode = tweetActionsNode.getElementsByClassName("js-actionReply")[0];
       replyButtonNode.addEventListener('click', function() {
-        // TODO: Don't just store string.
-        let storageItem = {};
-        item['event'] = "TwitterReply-"+Date.now();
-        storageItem["TwitterReply-"+Date.now()] = JSON.stringify(item);
-        chrome.storage.sync.set(storageItem);
-        sendDatapoint(storageItem);
+        item['event'] = "TwitterReply";
+        mc.sendDatapoint(item);
       });
 
       // Add retweet button click listener.
       let retweetButtonNode = tweetActionsNode.getElementsByClassName("js-actionRetweet")[0];
       retweetButtonNode.addEventListener('click', function() {
-        // TODO: Don't just store string.
-        let storageItem = {};
-        item['event'] = "TwitterRetweet-"+Date.now();
-        storageItem["TwitterRetweet-"+Date.now()] = JSON.stringify(item);
-        chrome.storage.sync.set(storageItem);
-        sendDatapoint(storageItem);
+        item['event'] = "TwitterRetweet";
+        mc.sendDatapoint(item);
       });
 
       // Add favorite button click listener.
       let favoriteButtonNode = tweetActionsNode.getElementsByClassName("js-actionFavorite")[0];
       favoriteButtonNode.addEventListener('click', function() {
-        // TODO: Don't just store string.
-        let storageItem = {};
-        item['event'] = "TwitterFavorite-"+Date.now();
-        storageItem["TwitterFavorite-"+Date.now()] = JSON.stringify(item);
-        chrome.storage.sync.set(storageItem);
-        console.log(storageItem);
-        sendDatapoint(storageItem);
+        item['event'] = "TwitterFavorite";
+        mc.sendDatapoint(item);
       });
     } catch(err) {
-      console.log("fasdufji");
+      console.log("Error while setting handlers:");
       console.log(err);
       continue;
     }
-
 
   }
 }
@@ -101,6 +68,10 @@ const config = {
 };
 
 
-console.log("At least here...");
-observer.observe(document.body, config);
-registerTweetActions(document.body);
+var mc;
+function initDataSource(metroClient) {
+  mc = metroClient;
+  console.log("Beginning Twitter data source.");
+  observer.observe(document.body, config);
+  registerTweetActions(document.body);
+}
