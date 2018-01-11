@@ -1,5 +1,5 @@
 {
-  "name": "reddit-basic",
+  "name": "reddit-basic-votes",
   "author": "adam",
   "description": "This is a basic Reddit source that collects up/down votes and the post title.",
   "version": "0.1",
