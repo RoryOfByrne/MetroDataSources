@@ -14,10 +14,12 @@ const registerEventsHandler = function(node) {
     });
   }
 
-  // We also want to fire when the page is left:
-  window.addEventListener("beforeunload", function() {
+  // We also want to fire when the page is left. On Imgur the beforeunload
+  // event isn't fired, so listen instead for the hashchange function. i.e. the
+  // URL changing.
+  window.onhashchange = function() {
     sendDatapoint("leave");
-  });
+  };
 }
 
 /*
