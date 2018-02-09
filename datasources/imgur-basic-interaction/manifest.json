@@ -1,7 +1,7 @@
 {
   "name": "imgur-basic-interaction",
   "author": "adam",
-  "description": "This runs on imgur.com and collects the time the page was loaded, the time the page was left, and if a post was upvoted, downvoted or favorited.",
+  "description": "This runs on imgur.com and collects the time the page was loaded, the URL, and if a post was upvoted, downvoted or favorited.",
   "version": "0.1",
   "sites": [".*imgur\\.com.*"]
 }
