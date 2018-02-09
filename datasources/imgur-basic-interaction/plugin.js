@@ -11,7 +11,7 @@ const triggeringEvents = [
 ]
 
 const registerEventsHandler = function(node) {
-  let upvoteNode = node.getElementsByClassName(post-action-upvote);
+  let upvoteNode = node.getElementsByClassName("post-action-upvote");
   console.log(upvoteNode);
 }
 
