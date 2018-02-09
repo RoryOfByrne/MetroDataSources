@@ -3,12 +3,13 @@ const registerEventsHandler = function(node) {
   // "post-action-[upvote|downvote|favorite]"
   // This means we can just do a for loop on the keyword:
   let eventTypes = ["upvote", "downvote", "favorite"];
+
   for(var i=0; i<eventTypes.length; i++) {
     let eventType = eventTypes[i];
     let eventNode = node.getElementsByClassName("post-action-"+eventType)[0];
 
     // Got the node, attach the click listener:
-    document.addEventListener("click", function(event) {
+    eventNode.addEventListener("click", function(event) {
       sendDatapoint(eventType);
     });
   }
