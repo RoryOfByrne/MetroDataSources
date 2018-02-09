@@ -11,6 +11,12 @@ const registerEventsHandler = function(node) {
     document.addEventListener("click", function(event) {
       sendDatapoint(eventType);
     });
+  }
+
+  // We also want to fire when the page is left:
+  window.addEventListener("beforeunload", function() {
+    sendDatapoint("leave");
+  });
 }
 
 /*
