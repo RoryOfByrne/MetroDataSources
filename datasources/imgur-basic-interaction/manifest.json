@@ -3,5 +3,5 @@
   "author": "adam",
   "description": "This runs on imgur.com and collects the time the page was loaded, the time the page was left, and if a post was upvoted, downvoted or hearted.",
   "version": "0.1",
-  "sites": [".*\\.imgur\\.com.*"]
+  "sites": [".*imgur\\.com.*"]
 }
