@@ -13,6 +13,12 @@ const registerEventsHandler = function(node) {
       sendDatapoint(eventType);
     });
   }
+
+  // When a new page is loaded only the URL changes, it's not a full page
+  // reload. This function fires when the page URL changes.
+  window.onhashchange = function() {
+    sendDatapoint("load");
+  };
 }
 
 /*
