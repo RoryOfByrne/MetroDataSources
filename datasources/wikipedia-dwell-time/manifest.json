@@ -1,7 +1,0 @@
-{
-  "name": "wikipedia-dwell-time",
-  "author": "adam",
-  "description": "This datasource records the time you load a wikipedia page and the time you leave the page, along with the URL that you visit.",
-  "version": "0.0.1",
-  "sites": [".*\\.wikipedia\\.*.*"]
-}
