@@ -1,0 +1,10 @@
+{
+  "name": "metro-dwell-time",
+  "author": "rory",
+  "description": "This DataSource collects data about the things you do on the Metro website. It keeps track of
+      which links you click. It registers how long you spend on each page. It keeps track of every time you
+      enable or disable a DataSource. Its purpose is to help us improve the design of the website by finding
+      areas where the users are not satisfied.",
+  "version": "0.1",
+  "sites": ["metro.exchange/*"]
+}
