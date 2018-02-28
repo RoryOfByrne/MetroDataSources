@@ -11,13 +11,11 @@ function monitorDwellTime(metroClient) {
       "URL": URL
     }
 
-    console.log(datapoint);
     metroClient.sendDatapoint(datapoint);
   });
 }
 
 function initDataSource(metroClient) {
   mc = metroClient;
-  console.log("Loading Metro Dwell Time...");
   monitorDwellTime(mc);
 }
