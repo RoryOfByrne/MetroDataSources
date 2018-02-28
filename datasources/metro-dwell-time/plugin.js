@@ -11,6 +11,7 @@ function monitorDwellTime(metroClient) {
       "URL": URL
     }
 
+    console.log(datapoint);
     metroClient.sendDatapoint(datapoint);
   });
 }
