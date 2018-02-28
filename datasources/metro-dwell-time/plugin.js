@@ -18,6 +18,5 @@ function monitorDwellTime(metroClient) {
 function initDataSource(metroClient) {
   mc = metroClient;
   console.log("Loading Metro Dwell Time...");
-  observer.observe(document.body, config);
   monitorDwellTime(mc);
 }
